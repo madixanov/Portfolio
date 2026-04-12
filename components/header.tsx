@@ -14,15 +14,15 @@ export default function Header() {
     ];
 
     useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 20);
-        };
-
+        const handleScroll = () => setScrolled(window.scrollY > 20);
         window.addEventListener("scroll", handleScroll);
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        }
+        return () => window.removeEventListener("scroll", handleScroll);
     }, []);
+
+    // lock scroll when menu open
+    useEffect(() => {
+        document.body.style.overflow = open ? "hidden" : "auto";
+    }, [open]);
 
     const scrollToSection = (id: string) => {
         const el = document.getElementById(id);
@@ -32,115 +32,136 @@ export default function Header() {
             behavior: "smooth",
             block: "start",
         });
+
+        setOpen(false);
     };
 
     return (
-        <header className={`
-            fixed top-0 left-0 w-full z-50 transition-all
+        <>
+            <header className={`
+                fixed top-0 left-0 w-full z-50 transition-all
+                ${scrolled
+                    ? "py-4 bg-black/30 backdrop-blur-md border-b border-white/10"
+                    : "py-6 bg-transparent"
+                }
+            `}>
+                <div className="flex items-center justify-between
+                    max-w-6xl mx-auto px-6 sm:px-10 lg:px-16">
 
-            ${scrolled ? "py-3 bg-white/1 backdrop-blur-sm border-b border-text-secondary sm:py-4 lg:py-5" 
-                :
-                "py-6 bg-transparent sm:py-8 lg:py-10"
-            }
-        `}>
+                    {/* Logo */}
+                    <h1 className="
+                        text-2xl sm:text-4xl font-bold cursor-pointer text-white
+                        transition hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.7)]
+                    ">
+                        ykDev
+                    </h1>
 
-            <div className="flex items-center justify-between
-                max-w-6xl mx-auto
-                px-6 sm:px-10 lg:px-16">
-                {/* Logo */}
-                <h1 className="
-                    text-2xl sm:text-4xl font-bold cursor-pointer text-white
-                    transition hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.7)]
-                ">
-                    ykDev
-                </h1>
+                    {/* Desktop Nav */}
+                    <nav className="hidden md:block">
+                        <ul className="flex gap-8 items-center">
+                            {navItems.map((item) => (
+                                <li
+                                    key={item.id}
+                                    onClick={() => scrollToSection(item.id)}
+                                    className="
+                                        cursor-pointer text-white/80 hover:text-white
+                                        transition text-lg lg:text-xl
+                                    "
+                                >
+                                    {item.label}
+                                </li>
+                            ))}
 
-                {/* Desktop Nav */}
-                <nav className="hidden md:block">
-                    <ul className="flex gap-8 items-center">
-                        {navItems.map((item) => (
-                            <li
-                                key={item.id}
+                            <button
+                                onClick={() => scrollToSection("contact")}
                                 className="
-                                    relative cursor-pointer
-                                    text-white/80 hover:text-white
-                                    transition text-lg lg:text-xl
-                                    hover:after:w-full hover:after:left-0 hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.7)]
+                                    ml-6 px-5 py-2 rounded-full text-white
+                                    bg-[linear-gradient(135deg,var(--accent-from),var(--accent-to))]
+                                    bg-size-[200%_200%] bg-left hover:bg-right
+                                    transition-all duration-500 hover:scale-105
                                 "
-                                onClick={() => scrollToSection(item.id)}
                             >
-                                {item.label}
-                            </li>
-                        ))}
+                                Contact
+                            </button>
+                        </ul>
+                    </nav>
 
-                        {/* Desktop Button */}
-                        <button className="
-                            ml-6 px-5 py-2
-                            rounded-full
-                            text-white
-                            bg-[linear-gradient(135deg,var(--accent-from),var(--accent-to))]
-                            bg-size-[200%_200%] bg-left hover:bg-right
-                            transition-all duration-500
-                            hover:scale-105
-                            hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.25)]
-                        ">
-                            Contact Me
-                        </button>
-                    </ul>
-                </nav>
+                    {/* Burger */}
+                    <button
+                        onClick={() => setOpen(true)}
+                        className="md:hidden flex flex-col gap-1 z-50"
+                    >
+                        <span className="w-6 h-0.5 bg-white" />
+                        <span className="w-6 h-0.5 bg-white" />
+                        <span className="w-6 h-0.5 bg-white" />
+                    </button>
+                </div>
+            </header>
 
-                {/* Burger Button */}
-                <button
-                    onClick={() => setOpen(!open)}
-                    className="md:hidden flex flex-col gap-1 z-50"
-                >
-                    <span className={`w-6 h-0.5 bg-white transition ${open ? "rotate-45 translate-y-1.5" : ""}`} />
-                    <span className={`w-6 h-0.5 bg-white transition ${open ? "opacity-0" : ""}`} />
-                    <span className={`w-6 h-0.5 bg-white transition ${open ? "-rotate-45 -translate-y-1.5" : ""}`} />
-                </button>
+            {/* BACKDROP */}
+            <div
+                onClick={() => setOpen(false)}
+                className={`
+                    fixed inset-0 z-40
+                    bg-black/60 backdrop-blur-sm
+                    transition-opacity duration-300
+                    ${open ? "opacity-100 visible" : "opacity-0 invisible"}
+                `}
+            />
 
-                {/* Mobile Menu */}
-                <div
-                    className={`
-                        fixed inset-0 z-40
-                        bg-black/70 backdrop-blur-md
-                        flex flex-col items-center justify-center gap-8
-                        transition-all duration-500
-                        ${open ? "opacity-100 visible" : "opacity-0 invisible"}
-                    `}
-                >
-                    {navItems.map((item) => (
-                        <a
-                            key={item.id}
-                            href={`#${item.id}`}
-                            onClick={() => setOpen(false)}
-                            className="
-                                text-2xl text-white/80 hover:text-white
-                                transition
-                            "
-                        >
-                            {item.label}
-                        </a>
-                    ))}
+            {/* ASIDE MENU */}
+            <aside
+                className={`
+                    fixed top-0 right-0 z-50
+                    h-full w-70 sm:w-85
 
-                    {/* Mobile CTA Button */}
+                    bg-black/70 backdrop-blur-xl
+                    border-l border-white/10
+
+                    transform transition-transform duration-500 ease-out
+
+                    ${open ? "translate-x-0" : "translate-x-full"}
+                `}
+            >
+                <div className="p-8 flex flex-col gap-8">
+
+                    {/* Close */}
                     <button
                         onClick={() => setOpen(false)}
+                        className="self-end text-white text-xl"
+                    >
+                        ✕
+                    </button>
+
+                    {/* Links */}
+                    <div className="flex flex-col gap-6 mt-10">
+                        {navItems.map((item) => (
+                            <button
+                                key={item.id}
+                                onClick={() => scrollToSection(item.id)}
+                                className="
+                                    text-left text-white/80 text-xl
+                                    hover:text-white transition
+                                "
+                            >
+                                {item.label}
+                            </button>
+                        ))}
+                    </div>
+
+                    {/* CTA */}
+                    <button
+                        onClick={() => scrollToSection("contact")}
                         className="
-                            mt-6 px-6 py-3
-                            rounded-full
-                            text-white font-medium
+                            mt-10 px-6 py-3 rounded-full text-white
                             bg-[linear-gradient(135deg,var(--accent-from),var(--accent-to))]
-                            bg-size-[200%_200%] bg-left hover:bg-right
-                            transition-all duration-500
-                            hover:scale-105
+                            hover:scale-105 transition
                         "
                     >
                         Contact Me
                     </button>
                 </div>
-            </div>
-
-        </header>
+            </aside>
+        </>
     );
 }
