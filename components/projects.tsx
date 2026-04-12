@@ -75,9 +75,9 @@ export default function Projects() {
               key={i}
               className="
                 pl-4
-                min-w-[280px]
-                sm:min-w-[340px]
-                flex-shrink-0
+                min-w-70
+                sm:min-w-80
+                shrink-0
               "
             >
               <div
@@ -116,7 +116,7 @@ export default function Projects() {
                     {/* dark overlay */}
                     <div className="
                         absolute inset-0
-                        bg-gradient-to-t from-black/80 via-black/20 to-transparent
+                        bg-linear-to-t from-black/80 via-black/20 to-transparent
                         opacity-80
                         group-hover:opacity-60
                         transition
@@ -125,9 +125,9 @@ export default function Projects() {
                     {/* glow flash */}
                     <div className="
                         absolute inset-0
-                        bg-gradient-to-r from-transparent via-white/5 to-transparent
-                        translate-x-[-100%]
-                        group-hover:translate-x-[100%]
+                        bg-linear-to-r from-transparent via-white/5 to-transparent
+                        -translate-x-full
+                        group-hover:translate-x-full
                         transition-transform duration-1000
                     " />
                     </div>
@@ -160,7 +160,7 @@ export default function Projects() {
                         className="
                             flex-1 text-center py-2 text-sm rounded-full
 
-                            bg-gradient-to-r from-accent-from to-accent-to
+                            bg-linear-to-r from-accent-from to-accent-to
                             text-white
 
                             transition-all duration-500
@@ -244,7 +244,7 @@ export default function Projects() {
                 {/* gradient overlay */}
                 <div className="
                     absolute inset-0
-                    bg-gradient-to-t from-black/80 via-black/20 to-transparent
+                    bg-linear-to-t from-black/80 via-black/20 to-transparent
                     opacity-80
                     group-hover:opacity-60
                     transition
@@ -253,7 +253,7 @@ export default function Projects() {
                 {/* light sweep effect */}
                 <div className="
                     absolute inset-0
-                    bg-gradient-to-r from-transparent via-white/5 to-transparent
+                    bg-linear-to-r from-transparent via-white/5 to-transparent
                     translate-x-[-120%]
                     group-hover:translate-x-[120%]
                     transition-transform duration-1000
@@ -290,7 +290,7 @@ export default function Projects() {
                 className="
                     flex-1 text-center py-2 rounded-full text-sm
 
-                    bg-gradient-to-r from-accent-from to-accent-to
+                    bg-linear-to-r from-accent-from to-accent-to
                     text-white
 
                     transition-all duration-500
