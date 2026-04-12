@@ -47,10 +47,10 @@ export default function Hero() {
                 transition={{ duration: 0.7, ease: "easeOut" }}
                 className="
                     relative
-                    w-[240px] h-[240px]
-                    sm:w-[280px] sm:h-[280px]
-                    lg:w-[340px] lg:h-[340px]
-                    2xl:w-[400px] 2xl:h-[400px]
+                    w-60 h-60
+                    sm:w-70 sm:h-70
+                    lg:w-85 lg:h-85
+                    2xl:w-10 2xl:h-10
                 "
             >
 
@@ -59,7 +59,7 @@ export default function Hero() {
                     className="
                         absolute inset-0
                         rounded-full
-                        bg-gradient-to-r from-accent-from to-accent-to
+                        bg-linear-to-r from-accent-from to-accent-to
                         blur-[90px]
                     "
                     animate={{
@@ -75,8 +75,8 @@ export default function Hero() {
 
                 {/* Border */}
                 <div className="
-                    relative p-[3px] rounded-full
-                    bg-gradient-to-r from-accent-from to-accent-to
+                    relative p-0.75 rounded-full
+                    bg-linear-to-r from-accent-from to-accent-to
                     shadow-lg
                 ">
                     {/* Avatar */}
@@ -161,7 +161,7 @@ export default function Hero() {
                         rounded-full text-white font-medium
 
                         bg-[linear-gradient(135deg,var(--accent-from),var(--accent-to))]
-                        bg-[length:200%_200%] bg-left hover:bg-right
+                        bg-size-[200%_200%] bg-left hover:bg-right
 
                         transition-all duration-500 ease-in-out
                         hover:shadow-lg

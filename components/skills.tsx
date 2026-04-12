@@ -40,8 +40,8 @@ export default function Skills() {
 
             {/* divider glow */}
             <div className="
-                my-8 h-[1px] w-full
-                bg-gradient-to-r from-transparent via-white/20 to-transparent
+                my-8 h-1 w-full
+                bg-linear-to-r from-transparent via-white/20 to-transparent
                 blur-[0.5px]
             " />
 

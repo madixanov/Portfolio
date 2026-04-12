@@ -76,7 +76,7 @@ export default function Header() {
                             rounded-full
                             text-white
                             bg-[linear-gradient(135deg,var(--accent-from),var(--accent-to))]
-                            bg-[length:200%_200%] bg-left hover:bg-right
+                            bg-size-[200%_200%] bg-left hover:bg-right
                             transition-all duration-500
                             hover:scale-105
                             hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.25)]
@@ -91,9 +91,9 @@ export default function Header() {
                     onClick={() => setOpen(!open)}
                     className="md:hidden flex flex-col gap-1 z-50"
                 >
-                    <span className={`w-6 h-[2px] bg-white transition ${open ? "rotate-45 translate-y-[6px]" : ""}`} />
-                    <span className={`w-6 h-[2px] bg-white transition ${open ? "opacity-0" : ""}`} />
-                    <span className={`w-6 h-[2px] bg-white transition ${open ? "-rotate-45 -translate-y-[6px]" : ""}`} />
+                    <span className={`w-6 h-0.5 bg-white transition ${open ? "rotate-45 translate-y-1.5" : ""}`} />
+                    <span className={`w-6 h-0.5 bg-white transition ${open ? "opacity-0" : ""}`} />
+                    <span className={`w-6 h-0.5 bg-white transition ${open ? "-rotate-45 -translate-y-1.5" : ""}`} />
                 </button>
 
                 {/* Mobile Menu */}
@@ -128,7 +128,7 @@ export default function Header() {
                             rounded-full
                             text-white font-medium
                             bg-[linear-gradient(135deg,var(--accent-from),var(--accent-to))]
-                            bg-[length:200%_200%] bg-left hover:bg-right
+                            bg-size-[200%_200%] bg-left hover:bg-right
                             transition-all duration-500
                             hover:scale-105
                         "
