@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { easeOut, motion } from "framer-motion";
 
 const socials = [
   {
@@ -35,17 +36,42 @@ const socials = [
   },
 ];
 
+// ANIMATIONS
+const container = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.12,
+    },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 40, scale: 0.95 },
+  show: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.6,
+      ease: easeOut,
+    },
+  },
+};
+
 export default function Contact() {
   return (
     <section
       id="contact"
-      className="
-        w-full my-40 px-6
-        flex flex-col items-center
-      "
+      className="w-full my-40 px-6 flex flex-col items-center"
     >
       {/* HEADER */}
-      <div className="text-center max-w-3xl mb-16">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="text-center max-w-3xl mb-16"
+      >
         <p className="text-white/40 uppercase tracking-widest text-sm">
           Contact & Socials
         </p>
@@ -58,13 +84,16 @@ export default function Contact() {
         <p className="text-white/60 mt-4">
           Reach out via Telegram or follow me on social platforms 🚀
         </p>
-      </div>
+      </motion.div>
 
       {/* GRID */}
       <div className="w-full max-w-6xl grid lg:grid-cols-2 gap-10">
 
         {/* FORM */}
-        <div
+        <motion.div
+          initial={{ opacity: 0, x: -40, scale: 0.95 }}
+          whileInView={{ opacity: 1, x: 0, scale: 1 }}
+          transition={{ duration: 0.7 }}
           className="
             relative
             rounded-2xl
@@ -79,79 +108,41 @@ export default function Contact() {
           </h3>
 
           <div className="flex flex-col gap-4">
-            <input
-              placeholder="Your name"
-              className="
-                bg-white/5 border border-white/10
-                rounded-xl px-4 py-3
-                text-white
-                outline-none
-                focus:border-accent-from
-              "
-            />
+            <input className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white" placeholder="Your name" />
+            <input className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white" placeholder="Your email" />
+            <textarea className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white resize-none" rows={5} placeholder="Your message" />
 
-            <input
-              placeholder="Your email"
-              className="
-                bg-white/5 border border-white/10
-                rounded-xl px-4 py-3
-                text-white
-                outline-none
-                focus:border-accent-from
-              "
-            />
-
-            <textarea
-              placeholder="Your message"
-              rows={5}
-              className="
-                bg-white/5 border border-white/10
-                rounded-xl px-4 py-3
-                text-white
-                outline-none
-                resize-none
-                focus:border-accent-from
-              "
-            />
-
-            <button
-              className="
-                mt-2
-                py-3 rounded-xl
-                text-white font-medium
-
-                bg-linear-to-r from-accent-from to-accent-to
-                bg-size-[200%_200%] bg-left hover:bg-right
-
-                transition-all duration-500
-                hover:shadow-[0_0_25px_rgba(100,200,255,0.3)]
-                hover:scale-[1.02]
-              "
-            >
+            <button className="
+              mt-2 py-3 rounded-xl text-white font-medium
+              bg-linear-to-r from-accent-from to-accent-to
+              transition-all duration-500
+              hover:scale-[1.02]
+              hover:shadow-[0_0_25px_rgba(100,200,255,0.3)]
+            ">
               Send Message 🚀
             </button>
           </div>
-        </div>
+        </motion.div>
 
         {/* SOCIALS */}
-        <div className="flex flex-col gap-5">
-
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          className="flex flex-col gap-5"
+        >
           {socials.map((s, i) => {
             const isTelegram = s.name === "Telegram";
 
             return (
-              <a
+              <motion.a
                 key={i}
+                variants={item}
                 href={s.link}
                 target="_blank"
                 className={`
-                  group relative
-
-                  flex items-center gap-4
-                  p-5 rounded-2xl
-
-                  backdrop-blur-md
-                  border transition-all duration-500
+                  group relative flex items-center gap-4 p-5 rounded-2xl
+                  backdrop-blur-md border transition-all duration-500
 
                   hover:scale-[1.03]
                   hover:-translate-y-1
@@ -169,7 +160,6 @@ export default function Contact() {
                   className={`
                     absolute inset-0 rounded-2xl blur-xl transition
                     opacity-0 group-hover:opacity-100
-
                     ${
                       isTelegram
                         ? "bg-linear-to-r from-accent-from/30 to-accent-to/20"
@@ -179,63 +169,35 @@ export default function Contact() {
                 />
 
                 {/* ICON */}
-                <div
-                  className="
-                    relative w-12 h-12
-                    flex items-center justify-center
-                    rounded-full
-                    bg-white/5 border border-white/10
-                    group-hover:scale-110 transition
-                  "
-                >
+                <div className="relative w-12 h-12 flex items-center justify-center rounded-full bg-white/5 border border-white/10 group-hover:scale-110 transition">
                   <Image
                     src={s.icon}
                     alt={s.name}
                     width={28}
                     height={28}
-                    className="
-                      opacity-70 group-hover:opacity-100
-                      transition
-                    "
+                    className="opacity-70 group-hover:opacity-100 transition"
                   />
                 </div>
 
                 {/* TEXT */}
                 <div className="relative">
-                  <p
-                    className={`
-                      font-semibold transition
-                      ${
-                        isTelegram
-                          ? "text-white text-lg"
-                          : "text-white group-hover:text-accent-from"
-                      }
-                    `}
-                  >
+                  <p className={`font-semibold ${isTelegram ? "text-white text-lg" : "text-white group-hover:text-accent-from"}`}>
                     {s.name}
                   </p>
-
-                  <p className="text-white/60 text-sm">
-                    {s.desc}
-                  </p>
+                  <p className="text-white/60 text-sm">{s.desc}</p>
                 </div>
 
-                {/* BADGE */}
+                {/* badge */}
                 {isTelegram && (
-                  <span className="
-                    absolute right-4
-                    text-xs text-white/70
-                    px-2 py-1 rounded-full
-                    bg-white/10 border border-white/20
-                  ">
+                  <span className="absolute right-4 text-xs text-white/70 px-2 py-1 rounded-full bg-white/10 border border-white/20">
                     fast reply
                   </span>
                 )}
-              </a>
+              </motion.a>
             );
           })}
+        </motion.div>
 
-        </div>
       </div>
     </section>
   );
