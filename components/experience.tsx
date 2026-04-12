@@ -49,8 +49,8 @@ export default function Experience() {
 
         {/* Vertical line */}
         <div className="
-          absolute left-[10px] sm:left-4 top-0 bottom-0
-          w-[2px]
+          absolute left-2.5 sm:left-4 top-0 bottom-0
+          w-0.5
           bg-white/10
         " />
 
