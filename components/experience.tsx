@@ -34,7 +34,7 @@ export default function Experience() {
 
       px-5 sm:px-8 lg:px-12 2xl:px-0
       my-24 sm:my-32 lg:my-40
-    ">
+    " id="experience">
 
       {/* Title */}
       <h2 className="
@@ -116,6 +116,7 @@ export default function Experience() {
                         text-base sm:text-lg lg:text-xl 2xl:text-2xl
                         leading-relaxed
                     "
+                    key={j}
                     >
                       <span className="text-accent-from">•</span>
                       {task}
