@@ -29,8 +29,7 @@ export default function Experience() {
   return (
     <section className="
       w-full
-      max-w-7xl 2xl:max-w-500
-      mx-auto
+      max-w-6xl mx-auto
 
       px-5 sm:px-8 lg:px-12 2xl:px-0
       my-24 sm:my-32 lg:my-40

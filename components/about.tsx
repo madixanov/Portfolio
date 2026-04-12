@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function About() {
     return (
-        <section id="about" className="w-full max-w-500 mx-auto my-40 px-6 sm:px-10 lg:px-16">
+        <section id="about" className="w-full max-w-6xl mx-auto my-40 px-6 sm:px-10 lg:px-16">
             <motion.div
                 initial={{ opacity: 0, y: 40}}
                 whileInView={{ opacity: 1, y: 0}}

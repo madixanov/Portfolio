@@ -26,10 +26,13 @@ export default function Header() {
 
     const scrollToSection = (id: string) => {
         const el = document.getElementById(id);
-        const yOffset = -100;
-        const y = el ? el.getBoundingClientRect().top + window.pageYOffset + yOffset : 0;
-        window.scrollTo({ top: y, behavior: "smooth" });
-    }
+        if (!el) return;
+
+        el.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+        });
+    };
 
     return (
         <header className={`
@@ -42,7 +45,7 @@ export default function Header() {
         `}>
 
             <div className="flex items-center justify-between
-                mx-auto max-w-500
+                max-w-6xl mx-auto
                 px-6 sm:px-10 lg:px-16">
                 {/* Logo */}
                 <h1 className="
