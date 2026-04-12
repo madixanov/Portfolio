@@ -39,7 +39,7 @@ export default function Experience() {
       {/* Title */}
       <h2 className="
         text-center
-        text-4xl sm:text-5xl lg:text-6xl 2xl:text-7xl
+        text-4xl sm:text-5xl lg:text-6xl
         font-bold text-white
         ">
         Experience
