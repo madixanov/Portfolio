@@ -161,7 +161,7 @@ export default function Projects() {
         variants={container}
         initial="hidden"
         whileInView="show"
-        className="hidden lg:grid grid-cols-3 gap-10 max-w-6xl w-full"
+        className="hidden lg:grid grid-cols-3 gap-10 max-w-6xl w-full py-3"
       >
         {projects.map((project, i) => (
           <motion.div
