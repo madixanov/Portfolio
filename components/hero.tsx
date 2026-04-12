@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 
 import { Variants, cubicBezier } from "framer-motion";
 
+import { ArrowDown } from "lucide-react";
+
 const container: Variants = {
     hidden: {},
     show: {
@@ -152,6 +154,8 @@ export default function Hero() {
                     className="
                         mt-2 self-center lg:self-start
 
+                        flex items-center gap-2
+
                         px-6 py-3
                         sm:px-7 sm:py-4
                         lg:px-8 lg:py-4
@@ -168,7 +172,21 @@ export default function Hero() {
                         hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.25)]
                     "
                 >
-                    Download Resume
+                    <motion.div
+                        animate={{ y: [0, 5, 0] }}
+                        transition={{
+                            duration: 1.2,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                        }}
+                        whileHover={{
+                            scale:1.2,
+                            y: [0, 8, 0]
+                        }}
+                        className="flex items-center">
+                        <ArrowDown size={25} />
+                    </motion.div>
+                    Download CV
                 </motion.button>
 
             </motion.div>
