@@ -50,7 +50,7 @@ export default function Hero() {
                     w-60 h-60
                     sm:w-70 sm:h-70
                     lg:w-85 lg:h-85
-                    2xl:w-10 2xl:h-10
+                    2xl:w-100 2xl:h-100
                 "
             >
 
