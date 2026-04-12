@@ -6,7 +6,12 @@ export default function Header() {
     const [open, setOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
 
-    const navItems = ["About", "Skills", "Experience", "Projects"];
+    const navItems = [
+        { label: "About", id: "about" },
+        { label: "Skills", id: "skills" },
+        { label: "Experience", id: "experience" },
+        { label: "Projects", id: "projects" },
+    ];
 
     useEffect(() => {
         const handleScroll = () => {
@@ -18,6 +23,13 @@ export default function Header() {
             window.removeEventListener("scroll", handleScroll);
         }
     }, []);
+
+    const scrollToSection = (id: string) => {
+        const el = document.getElementById(id);
+        const yOffset = -100;
+        const y = el ? el.getBoundingClientRect().top + window.pageYOffset + yOffset : 0;
+        window.scrollTo({ top: y, behavior: "smooth" });
+    }
 
     return (
         <header className={`
@@ -45,15 +57,16 @@ export default function Header() {
                     <ul className="flex gap-8 items-center">
                         {navItems.map((item) => (
                             <li
-                                key={item}
+                                key={item.id}
                                 className="
                                     relative cursor-pointer
                                     text-white/80 hover:text-white
                                     transition text-lg lg:text-xl
                                     hover:after:w-full hover:after:left-0 hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.7)]
                                 "
+                                onClick={() => scrollToSection(item.id)}
                             >
-                                {item}
+                                {item.label}
                             </li>
                         ))}
 
@@ -95,15 +108,15 @@ export default function Header() {
                 >
                     {navItems.map((item) => (
                         <a
-                            key={item}
-                            href="#"
+                            key={item.id}
+                            href={`#${item.id}`}
                             onClick={() => setOpen(false)}
                             className="
                                 text-2xl text-white/80 hover:text-white
                                 transition
                             "
                         >
-                            {item}
+                            {item.label}
                         </a>
                     ))}
 
