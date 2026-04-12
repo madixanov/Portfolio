@@ -33,6 +33,10 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: url("/star_background.png") center center fixed ;
   color: var(--foreground);

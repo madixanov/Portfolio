@@ -1,5 +1,5 @@
 export default function Home() {
   return (
-    <div>Hello world!</div>
+    <div className="pt-50">Hello world!</div>
   )
 }
