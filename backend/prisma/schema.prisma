@@ -11,3 +11,86 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+model User {
+  id String @id @default(uuid())
+  email String @unique
+  password String
+  createdAt DateTime @default(now())
+}
+
+model Major {
+  id String @id @default(uuid())
+  name String
+  createdAt DateTime @default(now())
+}
+
+model Creed {
+  id String @id @default(uuid())
+  content String
+  createdAt DateTime @default(now())
+}
+
+model AboutMe {
+  id String @id @default(uuid())
+  content String
+  widget String[]
+  createdAt DateTime @default(now())
+}
+
+model Skill {
+  id String @id @default(uuid())
+  title String
+  icon String
+  createdAt DateTime @default(now())
+}
+
+model Experience {
+  id String @id @default(uuid())
+  name String
+  desc String
+  tasks String[]
+  startDate DateTime
+  endDate DateTime?
+  createdAt DateTime @default(now())
+}
+
+model Project {
+  id String @id @default(uuid())
+  img String
+  title String
+  desc String
+  tools String[]
+  viewLink String
+  codeLink String
+  createdAt DateTime @default(now())
+}
+
+enum ContactType {
+  FAST
+  SLOW
+}
+
+model Contact {
+  id String @id @default(uuid())
+  title String
+  url String
+  icon String
+  type ContactType
+  createdAt DateTime @default(now())
+}
+
+model CV {
+  id String @id @default(uuid())
+  fileUrl String
+  fileName String
+  createdAt DateTime @default(now())
+}
+
+model Message {
+  id String @id @default(uuid())
+  name String
+  email String
+  message String
+  createdAt DateTime @default(now())
+}
