@@ -10,7 +10,7 @@ export default function Skills() {
     const [pause, setPause] = useState(false);
 
     return (
-        <section id="skills" className="w-full overflow-hidden my-60 px-6">
+        <section id="skills" className="w-full overflow-hidden my-40 px-6">
 
             {/* HEADER STORY */}
             <motion.div
