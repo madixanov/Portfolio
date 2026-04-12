@@ -39,7 +39,7 @@ export default function Hero() {
 
             mt-16 sm:mt-24 lg:mt-32
             px-6 sm:px-10 lg:px-16
-            max-w-7xl mx-auto
+            max-w-6xl mx-auto
         ">
 
             {/* Picture Block */}
