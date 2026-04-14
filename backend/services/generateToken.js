@@ -1,3 +1,5 @@
+import jwt from "jsonwebtoken";
+
 export const generateToken = (user) => {
     const accessToken = jwt.sign(
         { userId: user.id, email: user.email },
