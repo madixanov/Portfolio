@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 
 import userRoutes from './routes/user.route.js';
 import cvRoutes from './routes/cv.route.js';
+import majorRoutes from './routes/major.route.js';
 
 dotenv.config();
 
@@ -21,6 +22,7 @@ app.use(express.json());
 
 app.use("/api/user", userRoutes);
 app.use("/api/cv", cvRoutes);
+app.use("/api/major", majorRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
