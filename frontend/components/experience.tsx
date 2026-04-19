@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 const experiences = [
   {
@@ -26,6 +27,7 @@ const experiences = [
 ];
 
 export default function Experience() {
+  const { t } = useTranslation();
   return (
     <section className="
       w-full
@@ -41,7 +43,7 @@ export default function Experience() {
         text-4xl sm:text-5xl lg:text-6xl
         font-bold text-white
         ">
-        Experience
+        {t("experience")}
       </h2>
 
       <div className="relative mt-16 sm:mt-20">

@@ -1,11 +1,6 @@
 "use client";
 
-const links = [
-  { name: "About", id: "about" },
-  { name: "Skills", id: "skills" },
-  { name: "Projects", id: "projects" },
-  { name: "Contact", id: "contact" },
-];
+import { useTranslation } from "react-i18next";
 
 const socials = [
   { name: "GitHub", link: "https://github.com" },
@@ -14,6 +9,7 @@ const socials = [
 ];
 
 export default function Footer() {
+  const { t } = useTranslation();
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
     if (!el) return;
@@ -49,7 +45,7 @@ export default function Footer() {
           {/* ID PANEL */}
           <div>
             <p className="text-white/40 text-xs tracking-[0.3em] uppercase">
-              System ID
+              {t("footer.system_id")}
             </p>
 
             <h2 className="text-3xl font-bold text-white mt-3">
@@ -62,40 +58,83 @@ export default function Footer() {
             </p>
 
             <div className="mt-6 text-xs text-white/40">
-              STATUS: <span className="text-green-400">ONLINE</span>
+              {t("footer.status")}: <span className="text-green-400 uppercase">{t("footer.online")}</span>
             </div>
           </div>
 
           {/* NAV PANEL */}
           <div>
             <p className="text-white/40 text-xs tracking-[0.3em] uppercase">
-              Navigation Core
+              {t("footer.nav.name")}
             </p>
 
             <div className="mt-5 flex flex-col gap-3">
-              {links.map((l) => (
-                <button
-                  key={l.id}
-                  onClick={() => scrollTo(l.id)}
-                  className="
-                    text-white/60 hover:text-white
-                    transition-all duration-300
-                    text-left
+              <button
+                key="about"
+                onClick={() => scrollTo("about")}
+                className="
+                  text-white/60 hover:text-white
+                  transition-all duration-300
+                  text-left
 
-                    hover:translate-x-2
-                  "
-                >
-                  <span className="text-white/30 mr-2">▸</span>
-                  {l.name}
-                </button>
-              ))}
+                  hover:translate-x-2
+                "
+              >
+                <span className="text-white/30 mr-2">▸</span>
+                {t("footer.nav.about")}
+              </button>
+
+              <button
+                key="skills"
+                onClick={() => scrollTo("skills")}
+                className="
+                  text-white/60 hover:text-white
+                  transition-all duration-300
+                  text-left
+
+                  hover:translate-x-2
+                "
+              >
+                <span className="text-white/30 mr-2">▸</span>
+                {t("footer.nav.skills")}
+              </button>
+
+              <button
+                key="projects"
+                onClick={() => scrollTo("projects")}
+                className="
+                  text-white/60 hover:text-white
+                  transition-all duration-300
+                  text-left
+
+                  hover:translate-x-2
+                "
+              >
+                <span className="text-white/30 mr-2">▸</span>
+                {t("footer.nav.projects")}
+              </button>
+
+              <button
+                key="contact"
+                onClick={() => scrollTo("contact")}
+                className="
+                  text-white/60 hover:text-white
+                  transition-all duration-300
+                  text-left
+
+                  hover:translate-x-2
+                "
+              >
+                <span className="text-white/30 mr-2">▸</span>
+                {t("footer.nav.contact")}
+              </button>
             </div>
           </div>
 
           {/* COMM PANEL */}
           <div>
             <p className="text-white/40 text-xs tracking-[0.3em] uppercase">
-              Communication
+              {t("footer.communication")}
             </p>
 
             <div className="mt-5 flex flex-col gap-3">

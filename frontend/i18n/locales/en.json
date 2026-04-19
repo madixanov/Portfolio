@@ -1,0 +1,54 @@
+{
+  "nav": {
+    "about": "About",
+    "skills": "Skills",
+    "experience": "Experience",
+    "projects": "Projects",
+    "contact": "Contact Me"
+  },
+  "hero": {
+    "greeting": "Hi, I'm",
+    "name": "Yokub"
+  },
+  "about": "About me",
+  "tools": {
+    "title": "MY TECH STACK",
+    "subtitle": "Tools I use to build",
+    "secondsubtitle": "modern apps",
+    "description": "I work with modern technologies that help me build fast, scalable and beautiful web applications."
+  },
+  "experience": "Experience",
+  "projects": {
+    "title": "MY WORK",
+    "name": "Projects"
+  },
+  "contact": {
+    "title": "CONTACT & SOCIALS",
+    "name": "Let's Connect & Build Something",
+    "secondname": "Amazing",
+    "description": "Reach out via Telegram or follow me on social platforms 🚀"
+  },
+  "email": {
+    "title": "Send me a message",
+    "name_input": "Your name",
+    "email_input": "Your email",
+    "message_input": "Your message",
+    "button": "Send Message 🚀"
+  },
+  "footer": {
+    "system_id": "SYSTEM ID",
+    "status": "STATUS",
+    "online": "online",
+    "nav": {
+      "name": "NAVIGATION CORE",
+      "about": "About",
+      "skills": "Skills",
+      "projects": "Projects",
+      "contact": "Contact"
+    },
+    "communication": "COMMUNICATION"
+  },
+  "common": {
+    "language": "Language"
+  }
+}

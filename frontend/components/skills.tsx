@@ -3,11 +3,24 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
-const skills = [ { name: "React", desc: "Frontend library", icon: "/icons/react.svg", }, { name: "Next.js", desc: "React framework", icon: "/icons/nextjs.svg", }, { name: "TypeScript", desc: "Typed JS", icon: "/icons/typescript.svg", }, { name: "Node.js", desc: "Backend runtime", icon: "/icons/nodejs.svg", }, { name: "Express", desc: "Node.js framework", icon: "/icons/express.svg", }, { name: "Tailwind", desc: "CSS framework", icon: "/icons/tailwind.svg", }, { name: "HTML5", desc: "Markup language", icon: "/icons/html.svg", }, { name: "CSS3", desc: "Style sheet language", icon: "/icons/css.svg", }, { name: "Git", desc: "Version control", icon: "/icons/git.svg", }, { name: "GitHub", desc: "Code hosting", icon: "/icons/github.svg", }, { name: "PostgreSQL", desc: "Relational database", icon: "/icons/postgresql.svg", }, { name: "Python", desc: "Programming language", icon: "/icons/python.svg", }, ];
+const skills = [ { name: "React", desc: "Frontend library", icon: "/icons/react.svg", },
+     { name: "Next.js", desc: "React framework", icon: "/icons/nextjs.svg", },
+    { name: "TypeScript", desc: "Typed JS", icon: "/icons/typescript.svg", }, 
+    { name: "Node.js", desc: "Backend runtime", icon: "/icons/nodejs.svg", }, 
+    { name: "Express", desc: "Node.js framework", icon: "/icons/express.svg", }, 
+    { name: "Tailwind", desc: "CSS framework", icon: "/icons/tailwind.svg", }, 
+    { name: "HTML5", desc: "Markup language", icon: "/icons/html.svg", }, 
+    { name: "CSS3", desc: "Style sheet language", icon: "/icons/css.svg", }, 
+    { name: "Git", desc: "Version control", icon: "/icons/git.svg", }, 
+    { name: "GitHub", desc: "Code hosting", icon: "/icons/github.svg", }, 
+    { name: "PostgreSQL", desc: "Relational database", icon: "/icons/postgresql.svg", }, 
+    { name: "Python", desc: "Programming language", icon: "/icons/python.svg", }, ];
 
 export default function Skills() {
     const [pause, setPause] = useState(false);
+    const { t } = useTranslation();
 
     return (
         <section id="skills" className="w-full overflow-hidden my-40 px-6">
@@ -20,20 +33,19 @@ export default function Skills() {
                 className="text-center max-w-3xl mx-auto"
             >
                 <p className="text-white/50 text-sm uppercase tracking-widest">
-                    My Tech Stack
+                    {t("tools.title")}
                 </p>
 
                 <h1 className="
                     text-4xl sm:text-5xl lg:text-6xl
                     font-bold text-white mt-3
                 ">
-                    Tools I use to build
-                    <span className="text-accent-from"> modern apps</span>
+                    {t("tools.subtitle")}
+                    <span className="text-accent-from"> {t("tools.secondsubtitle")}</span>
                 </h1>
 
                 <p className="text-white/60 mt-4 text-base sm:text-lg">
-                    I work with modern technologies that help me build fast,
-                    scalable and beautiful web applications.
+                    {t("tools.description")}
                 </p>
             </motion.div>
 

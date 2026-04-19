@@ -3,6 +3,7 @@
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import { easeOut, motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 const projects = [
   {
@@ -62,6 +63,7 @@ const item = {
 };
 
 export default function Projects() {
+  const { t } = useTranslation(); 
   const [emblaRef] = useEmblaCarousel({
     loop: true,
     align: "start",
@@ -81,11 +83,11 @@ export default function Projects() {
         className="text-center max-w-3xl mb-16"
       >
         <p className="text-white/40 uppercase tracking-widest text-sm">
-          My Work
+          {t("projects.title")}
         </p>
 
         <h2 className="text-5xl font-bold text-white mt-3">
-          Projects
+          {t("projects.name")}
         </h2>
       </motion.div>
 

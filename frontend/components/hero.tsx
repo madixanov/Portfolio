@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 import { Variants, cubicBezier } from "framer-motion";
 
@@ -29,6 +30,7 @@ const item: Variants = {
 };
 
 export default function Hero() {
+    const { t } = useTranslation();
     return (
         <section id="hero" className="
             flex flex-col lg:flex-row
@@ -118,7 +120,7 @@ export default function Hero() {
                         font-bold text-white
                     "
                 >
-                    Hi, I'm <span className="text-accent-from">Yokub</span>
+                    {t("hero.greeting")} <span className="text-accent-from">{t("hero.name")}</span>
                 </motion.h1>
 
                 <motion.p

@@ -1,8 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 export default function About() {
+    const { t } = useTranslation();
     return (
         <section id="about" className="w-full max-w-6xl mx-auto my-40 px-6 sm:px-10 lg:px-16">
             <motion.div
@@ -21,7 +23,7 @@ export default function About() {
 
                 <div className="relative z-10">
                     <h2 className="text-3xl sm:text-3xl lg:text-5xl font-bold text-text-primary">
-                        About Me
+                        {t("about")}
                     </h2>
 
                     {/* Divider */}

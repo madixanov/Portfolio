@@ -1,0 +1,54 @@
+{
+  "nav": {
+    "about": "Men haqimda",
+    "skills": "Ko'nikmalar",
+    "experience": "Tajriba",
+    "projects": "Loyihalar",
+    "contact": "Aloqa"
+  },
+  "hero": {
+    "greeting": "Salom, men",
+    "name": "Yoqub"
+  },
+  "about": "Men haqimda",
+  "tools": {
+    "title": "Mening texnologiyalarim",
+    "subtitle": "Men foydalanadigan vositalar",
+    "secondsubtitle": "zamonaviy ilovalar uchun",
+    "description": "Men tez, kengaytiriladigan va chiroyli web ilovalar yaratishga yordam beradigan zamonaviy texnologiyalar bilan ishlayman."
+  },
+  "experience": "Tajriba",
+  "projects": {
+    "title": "MENING ISHLARIM",
+    "name": "Loyihalar"
+  },
+  "contact": {
+    "title": "ALOQA VA IJTIMOIY TARMOQLAR",
+    "name": "Keling bog'lanamiz va birga",
+    "secondname": "ajoyib narsa yarataylik",
+    "description": "Telegram orqali yozing yoki ijtimoiy tarmoqlarda kuzatib boring 🚀"
+  },
+  "email": {
+    "title": "Xabar yuborish",
+    "name_input": "Ismingiz",
+    "email_input": "Emailingiz",
+    "message_input": "Xabaringiz",
+    "button": "Xabar yuborish 🚀"
+  },
+  "footer": {
+    "system_id": "TIZIM ID",
+    "status": "HOLAT",
+    "online": "onlayn",
+    "nav": {
+      "name": "NAVIGATSIYA",
+      "about": "Men haqimda",
+      "skills": "Ko'nikmalar",
+      "projects": "Loyihalar",
+      "contact": "Aloqa"
+    },
+    "communication": "ALOQA"
+  },
+  "common": {
+    "language": "Til"
+  }
+}

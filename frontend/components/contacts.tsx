@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { easeOut, motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 const socials = [
   {
@@ -60,6 +61,7 @@ const item = {
 };
 
 export default function Contact() {
+  const { t } = useTranslation();
   return (
     <section
       id="contact"
@@ -73,16 +75,16 @@ export default function Contact() {
         className="text-center max-w-3xl mb-16"
       >
         <p className="text-white/40 uppercase tracking-widest text-sm">
-          Contact & Socials
+          {t("contacts.title")}
         </p>
 
         <h2 className="text-5xl font-bold text-white mt-3">
-          Let’s Connect & Build Something{" "}
-          <span className="text-accent-from">Amazing</span>
+          {t("contact.name")}{" "}
+          <span className="text-accent-from">{t("contact.secondname")}</span>
         </h2>
 
         <p className="text-white/60 mt-4">
-          Reach out via Telegram or follow me on social platforms 🚀
+          {t("contact.description")}
         </p>
       </motion.div>
 
@@ -104,13 +106,13 @@ export default function Contact() {
           "
         >
           <h3 className="text-white text-2xl font-bold mb-6">
-            Send me a message
+            {t("email.title")}
           </h3>
 
           <div className="flex flex-col gap-4">
-            <input className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white" placeholder="Your name" />
-            <input className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white" placeholder="Your email" />
-            <textarea className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white resize-none" rows={5} placeholder="Your message" />
+            <input className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white" placeholder={t("email.name_input")} />
+            <input className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white" placeholder={t("email.email_input")} />
+            <textarea className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white resize-none" rows={5} placeholder={t("email.message_input")} />
 
             <button className="
               mt-2 py-3 rounded-xl text-white font-medium
@@ -119,7 +121,7 @@ export default function Contact() {
               hover:scale-[1.02]
               hover:shadow-[0_0_25px_rgba(100,200,255,0.3)]
             ">
-              Send Message 🚀
+              {t("email.button")}
             </button>
           </div>
         </motion.div>
