@@ -1,34 +1,43 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { getSkills } from "@/api/api";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { Skill } from "@/types/types";
 
-const skills = [ { name: "React", desc: "Frontend library", icon: "/icons/react.svg", },
-     { name: "Next.js", desc: "React framework", icon: "/icons/nextjs.svg", },
-    { name: "TypeScript", desc: "Typed JS", icon: "/icons/typescript.svg", }, 
-    { name: "Node.js", desc: "Backend runtime", icon: "/icons/nodejs.svg", }, 
-    { name: "Express", desc: "Node.js framework", icon: "/icons/express.svg", }, 
-    { name: "Tailwind", desc: "CSS framework", icon: "/icons/tailwind.svg", }, 
-    { name: "HTML5", desc: "Markup language", icon: "/icons/html.svg", }, 
-    { name: "CSS3", desc: "Style sheet language", icon: "/icons/css.svg", }, 
-    { name: "Git", desc: "Version control", icon: "/icons/git.svg", }, 
-    { name: "GitHub", desc: "Code hosting", icon: "/icons/github.svg", }, 
-    { name: "PostgreSQL", desc: "Relational database", icon: "/icons/postgresql.svg", }, 
-    { name: "Python", desc: "Programming language", icon: "/icons/python.svg", }, ];
+const baseUrl = process.env.NEXT_PUBLIC_URL ?? "";
 
 export default function Skills() {
     const [pause, setPause] = useState(false);
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation(); // Добавили i18n для отслеживания языка
+    const [skills, setSkills] = useState<Skill[]>([]);
+    const [isFetching, setIsFetching] = useState(true);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            setIsFetching(true);
+            try {
+                const res = await getSkills();
+                setSkills(res || []);
+            } catch (error) {
+                console.error("Skills fetch error:", error);
+            } finally {
+                setIsFetching(false);
+            }
+        };
+
+        fetchData();
+    }, [i18n.language]); // Перезагружаем, если логика API зависит от языка
 
     return (
         <section id="skills" className="w-full overflow-hidden my-40 px-6">
-
-            {/* HEADER STORY */}
+            {/* HEADER */}
             <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
                 className="text-center max-w-3xl mx-auto"
             >
@@ -36,10 +45,7 @@ export default function Skills() {
                     {t("tools.title")}
                 </p>
 
-                <h1 className="
-                    text-4xl sm:text-5xl lg:text-6xl
-                    font-bold text-white mt-3
-                ">
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mt-3">
                     {t("tools.subtitle")}
                     <span className="text-accent-from"> {t("tools.secondsubtitle")}</span>
                 </h1>
@@ -49,70 +55,92 @@ export default function Skills() {
                 </p>
             </motion.div>
 
-            {/* divider glow */}
-            <div className="
-                my-8 h-1 w-full
-                bg-linear-to-r from-transparent via-white/20 to-transparent
-                blur-[0.5px]
-            " />
+            {/* DIVIDER */}
+            <div className="my-8 h-1 w-full bg-linear-to-r from-transparent via-white/20 to-transparent blur-[0.5px]" />
 
-            {/* CAROUSEL */}
-            <motion.div
-                className="flex gap-6 w-max py-5 mx-auto"
-                animate={{ x: pause ? 0 : -1000 }}
-                transition={{
-                    duration: 20,
-                    ease: "linear",
-                    repeat: Infinity,
-                }}
-                onHoverStart={() => setPause(true)}
-                onHoverEnd={() => setPause(false)}
-            >
-                {[...skills, ...skills].map((skill, i) => (
-                    <motion.div
-                        key={i}
-                        whileHover={{ scale: 1.1 }}
-                        className="
-                            relative group
-                            w-35 h-35
-                            flex flex-col items-center justify-center
-                            rounded-2xl
-                            bg-white/5
-                            border border-white/10
-                            backdrop-blur-md
-                            cursor-pointer
-                        "
-                    >
-                        <Image
-                            src={skill.icon}
-                            alt={skill.name}
-                            width={64}
-                            height={64}
-                            className="
-                                filter grayscale opacity-60
-                                group-hover:grayscale-0 group-hover:opacity-100
-                                transition-all duration-300
-                                group-hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.25)]
-                            "
-                        />
+            {/* CAROUSEL CONTAINER */}
+            <div className="relative min-h-[160px] flex items-center">
+                <AnimatePresence mode="wait">
+                    {isFetching ? (
+                        /* SKELETON LOADER */
+                        <motion.div 
+                            key="skeleton"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className="flex gap-6 mx-auto"
+                        >
+                            {[1, 2, 3, 4, 5, 6].map((i) => (
+                                <div 
+                                    key={i} 
+                                    className="w-35 h-35 rounded-2xl bg-white/5 border border-white/10 animate-pulse" 
+                                />
+                            ))}
+                        </motion.div>
+                    ) : (
+                        /* ACTUAL CAROUSEL */
+                        <motion.div
+                            key="carousel"
+                            initial={{ opacity: 0 }}
+                            animate={{ 
+                                opacity: 1, 
+                                ...(pause ? {} : { x: [0, -1000] }) 
+                            }}
+                            exit={{ opacity: 0 }}
+                            className="flex gap-6 w-max py-5"
+                            // Анимация бесконечного скролла
+                            transition={{
+                                x: {
+                                    duration: 25,
+                                    ease: "linear",
+                                    repeat: Infinity,
+                                },
+                                opacity: { duration: 0.5 }
+                            }}
+                            onHoverStart={() => setPause(true)}
+                            onHoverEnd={() => setPause(false)}
+                        >
+                            {/* Дублируем массив для бесшовности */}
+                            {[...skills, ...skills, ...skills].map((skill, i) => (
+                                <motion.div
+                                    key={`${skill.id}-${i}`}
+                                    whileHover={{ scale: 1.05, y: -5 }}
+                                    className="
+                                        relative group
+                                        w-35 h-35
+                                        flex flex-col items-center justify-center
+                                        rounded-2xl
+                                        bg-white/5
+                                        border border-white/10
+                                        backdrop-blur-md
+                                        cursor-pointer
+                                        transition-colors hover:border-white/30
+                                    "
+                                >
+                                    <div className="relative w-16 h-16 mb-2">
+                                        <Image
+                                            src={skill.image?.url ? `${baseUrl}${skill.image.url}` : "/placeholder.svg"}
+                                            alt={skill.title}
+                                            fill
+                                            className="
+                                                object-contain
+                                                filter grayscale opacity-60
+                                                group-hover:grayscale-0 group-hover:opacity-100
+                                                transition-all duration-300
+                                                group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]
+                                            "
+                                        />
+                                    </div>
 
-                        <p className="text-white/70 group-hover:text-white mt-2 transition">
-                            {skill.name}
-                        </p>
-
-                        <div className="
-                            absolute -bottom-14
-                            opacity-0 group-hover:opacity-100
-                            transition
-                            text-xs text-white/60 text-center
-                            w-45
-                        ">
-                            {skill.desc}
-                        </div>
-                    </motion.div>
-                ))}
-            </motion.div>
-
+                                    <p className="text-white/50 group-hover:text-white text-xs font-medium uppercase tracking-tighter transition-colors">
+                                        {skill.title}
+                                    </p>
+                                </motion.div>
+                            ))}
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+            </div>
         </section>
     );
 }

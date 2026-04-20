@@ -8,7 +8,8 @@
   },
   "hero": {
     "greeting": "Salom, men",
-    "name": "Yoqub"
+    "name": "Yoqub",
+    "download": "CV yuklab olish"
   },
   "about": "Men haqimda",
   "tools": {

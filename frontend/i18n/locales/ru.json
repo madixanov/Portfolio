@@ -8,7 +8,8 @@
   },
   "hero": {
     "greeting": "Привет, я",
-    "name": "Ёкуб"
+    "name": "Ёкуб",
+    "download": "Скачать CV"
   },
   "about": "Обо мне",
   "tools": {

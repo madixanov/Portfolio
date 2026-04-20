@@ -8,7 +8,8 @@
   },
   "hero": {
     "greeting": "Hi, I'm",
-    "name": "Yokub"
+    "name": "Yokub",
+    "download": "Download CV"
   },
   "about": "About me",
   "tools": {
