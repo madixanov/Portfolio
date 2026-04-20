@@ -5,9 +5,9 @@ const TOKEN = process.env.NEXT_PUBLIC_TOKEN;
 
 const api = axios.create({
     baseURL: `${API_URL}/api`,
-    headers: {
-        Authorization: `Bearer ${TOKEN}`,
-    },
+    // headers: {
+    //     Authorization: `Bearer ${TOKEN}`,
+    // },
 });
 
 type StrapiResponse<T> = {
