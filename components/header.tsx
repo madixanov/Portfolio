@@ -137,7 +137,7 @@ export default function Header() {
                     </button>
 
                     <div className="flex flex-col gap-6 mt-10">
-                        <ul className="flex gap-8 items-center">
+                        <ul className="flex flex-col gap-8 items-center">
                             <li onClick={() => scrollToSection("about")}>
                                 {t("nav.about")}
                             </li>
